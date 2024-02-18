@@ -1,0 +1,20 @@
+default: 
+  target: dev
+  outputs: 
+    dev: 
+      type: postgres
+      host: POSTGRES_HOST
+      user: POSTGRES_USER
+      password: POSTGRES_PASSWORD
+      port: POSTGRES_PORT
+      dbname: TABLE_NAME
+      schema: dev_dorian
+
+    prod: 
+      type: postgres
+      host: POSTGRES_HOST
+      user: POSTGRES_USER
+      password: POSTGRES_PASSWORD
+      port: POSTGRES_PORT
+      dbname: TABLE_NAME
+      schema: analytics

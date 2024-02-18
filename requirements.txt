@@ -1,0 +1,9 @@
+pandas
+configparser
+sqlalchemy
+psycopg2
+black
+flake8
+mypy
+isort
+dbt-postgres

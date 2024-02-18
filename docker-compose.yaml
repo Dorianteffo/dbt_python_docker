@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  elt:
+    container_name: elt
+    build:
+      context: .
+    volumes:
+      - ./:/code
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      TABLE_NAME: ${TABLE_NAME}
+      FILE_PATH: ${FILE_PATH}
+
+  warehouse: 
+    image: postgres:13
+    container_name: warehouse
+    environment: 
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes: 
+      - postgres-volume:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d
+    restart: always
+    ports: 
+      - "5432:5432"
+
+volumes:
+  postgres-volume: 
