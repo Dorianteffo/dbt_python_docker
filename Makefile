@@ -2,12 +2,20 @@ up:
 	docker compose --env-file .env up --build -d
 
 ingest: 
-	docker exec elt python ingestion/main.py
+	docker exec elt python ingestion/pipeline.py
 
 
 # pytest:
 # 	docker exec etl python -m pytest -p no:warnings -v
 
+dbt-debug: 
+	winpty docker exec -it elt bash -c "cd dbt && dbt debug"
+
+dbt-test: 
+	winpty docker exec -it elt bash -c "cd dbt && dbt test"
+
+dbt-run: 
+	winpty docker exec -it elt bash -c "cd dbt && dbt run"
 
 format:
 	docker exec elt python -m black -S --line-length 79 .
@@ -25,7 +33,7 @@ lint:
 	docker exec elt flake8 .
 
 
-ci: isort format type lint pytest
+ci: isort format type lint #pytest
 
 
 warehouse: 

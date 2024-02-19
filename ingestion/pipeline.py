@@ -5,7 +5,6 @@ from connection import close_conn, create_conn
 from to_landing import load_table_to_landing
 
 
-
 def main():
 
     engine = create_conn()
@@ -16,7 +15,7 @@ def main():
 
     df = pd.read_csv(file_path)
     load_table_to_landing(df, engine, table_name)
-    
+
     close_conn(engine)
 
 
