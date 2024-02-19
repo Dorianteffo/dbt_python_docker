@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: stg_retail_sales
+    columns:
+      - name: item_type
+        tests:
+          - not_null
+
+      - name: supplier
+        tests:
+          - not_null 
+
+      - name: retail_sales 
+        tests: 
+          - not_null

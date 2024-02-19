@@ -17,6 +17,9 @@ dbt-test:
 dbt-run: 
 	winpty docker exec -it elt bash -c "cd dbt && dbt run"
 
+dbt-deps: 
+	winpty docker exec -it elt bash -c "cd dbt && dbt deps"
+
 format:
 	docker exec elt python -m black -S --line-length 79 .
 
