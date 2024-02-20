@@ -22,7 +22,7 @@ clean-targets:
 models:
   warehouse_retail_sales_analytics:
   
-    warehouse: 
+    analytics: 
       +materialized: table 
 
     staging: 
