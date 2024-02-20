@@ -4,6 +4,6 @@ WITH distinct_supplier_table AS (
 )
 SELECT 
     {{ dbt_utils.generate_surrogate_key(['supplier']) }} AS supplier_id,
-    supplier
+    supplier AS supplier_name
 FROM distinct_supplier_table
 ORDER BY supplier_id 

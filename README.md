@@ -11,6 +11,10 @@
 ## Project Overview 
 The primary goal of this project is to create a data warehouse with a star schema on PostgreSQL based on a CSV file, facilitating analytics and dashboarding. We used Python to ingest raw data into the data warehouse on a specific schema and then utilized DBT to transform data, building all the dimension tables and the fact table (Dev schema). Subsequently, we applied tests to the resulting data before deploying it to our prod schema.
 
+## Data model 
+![datamodel.png](assets/data_model.png)
+
+
 ## Run the Project 
 * Spin up the containers using:
 
