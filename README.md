@@ -14,11 +14,15 @@ The primary goal of this project is to create a data warehouse with a star schem
 ## Run the Project 
 * Spin up the containers using:
 
-```make up```
+```
+make up
+```
  
 * Ingest the CSV file data into PostgreSQL:
 
-```make ingest```
+```
+make ingest
+```
 
 * Run the DBT models (this will run into the dev schema):
 
@@ -26,44 +30,48 @@ The primary goal of this project is to create a data warehouse with a star schem
 make dbt-debug  #to check if the connection to postgres works
 make dbt-run
 make dbt-test
-
 ```
 
 * Deploy all the models to the production schema:
 
 ```
 make dbt-deploy
-
 ```
 
 * To check the tables in PostgreSQL, run:
 
 ```
 make warehouse
-
 ```
 
 And then write some queries : 
 * Best items in terms of retail sales:
 
-```SELECT item_id, ROUND(CAST(SUM(retail_sales) AS numeric),2) AS total_sales ``
-```FROM analytics.fact_sales``` 
-```GROUP BY item_id```
-```ORDER BY total_sales DESC LIMIT 10```
+```
+SELECT 
+    item_id, 
+    ROUND(CAST(SUM(retail_sales) AS numeric),2) AS total_sales
+FROM analytics.fact_sales
+GROUP BY item_id
+ORDER BY total_sales DESC 
+LIMIT 10
+```
 
 or 
 
 * Warehouse and retail sales by year and months 
 
-```SELECT``` 
-    ```year,```
-    ```month,``` 
-    ```ROUND(CAST(SUM(warehouse_sales) AS numeric), 2) AS total_warehouse_sales,```
-    ```ROUND(CAST(SUM(retail_sales) AS numeric), 2) AS total_retail_sales```
-```FROM analytics.fact_sales a```
-```JOIN analytics.dim_date d ON a.date_id = d.date_id```
-```GROUP BY year, month```
-```ORDER BY year, month;```
+```
+SELECT 
+    year,
+    month,
+    ROUND(CAST(SUM(warehouse_sales) AS numeric), 2) AS total_warehouse_sales,
+    ROUND(CAST(SUM(retail_sales) AS numeric), 2) AS total_retail_sales
+FROM analytics.fact_sales a
+JOIN analytics.dim_date d ON a.date_id = d.date_id
+GROUP BY year, month
+ORDER BY year, month;
+```
 
 
 
