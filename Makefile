@@ -26,25 +26,25 @@ dbt-deploy:
 
 
 format:
-	docker exec elt python -m black -S --line-length 79 .
+	docker exec elt python -m black -S --line-length 79 ingestion
 
-# pytest:
-# 	docker exec etl python -m pytest -p no:warnings -v
+
+pytest:
+	docker exec elt python -m pytest tests -p no:warnings -v
 
 
 isort:
-	docker exec elt isort .
-
+	docker exec elt isort ingestion
 
 type:
-	docker exec elt mypy --ignore-missing-imports .
+	docker exec elt mypy --ignore-missing-imports ingestion
 
 
 lint: 
-	docker exec elt flake8 .
+	docker exec elt flake8 ingestion
 
 
-ci: isort format type lint #pytest
+ci: isort format type lint pytest
 
 
 warehouse: 

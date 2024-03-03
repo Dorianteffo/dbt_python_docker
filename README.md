@@ -4,7 +4,6 @@
 ## Tech Stack 
 * DBT 
 * Docker
-* GitHub Actions 
 * SQL
 * Python 
 
@@ -21,6 +20,11 @@ The primary goal of this project is to create a data warehouse with a star schem
 ```
 make up
 ```
+
+* Run the Ci and test 
+```
+make ci
+```
  
 * Ingest the CSV file data into PostgreSQL:
 
@@ -32,6 +36,7 @@ make ingest
 
 ```
 make dbt-debug  #to check if the connection to postgres works
+make dbt-deps #install packages
 make dbt-run
 make dbt-test
 ```
@@ -42,7 +47,7 @@ make dbt-test
 make dbt-deploy
 ```
 
-* To check the tables in PostgreSQL, run:
+* To query the PostgreSQL database, run:
 
 ```
 make warehouse

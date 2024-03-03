@@ -1,5 +1,8 @@
 import logging
 
+import pandas as pd
+from sqlalchemy.engine.base import Engine
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -8,7 +11,9 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-def load_table_to_landing(df, engine, table_name):
+def load_table_to_landing(
+    df: pd.DataFrame, engine: Engine, table_name: str, schema_name: str
+):
     # load the csv file to the schema
     try:
         df.to_sql(
@@ -16,9 +21,9 @@ def load_table_to_landing(df, engine, table_name):
             engine,
             if_exists='replace',
             index=False,
-            schema='landing',
+            schema=schema_name,
         )
-        logger.info("Table loaded to the landing area!!!")
+        logger.info(f"Table loaded to the {schema_name} schema!!!")
     except Exception as e:
         logger.error("!!!!!!!!!!!!!!!!!!!!!!")
-        logger.error(f"Enable to load the data to landing area : {e}")
+        logger.error(f"Enable to load the data to {schema_name} schema : {e}")
