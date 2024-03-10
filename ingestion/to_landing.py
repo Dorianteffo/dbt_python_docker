@@ -14,7 +14,6 @@ logger = logging.getLogger(__name__)
 def load_table_to_landing(
     df: pd.DataFrame, engine: Engine, table_name: str, schema_name: str
 ):
-    # load the csv file to the schema
     try:
         df.to_sql(
             table_name,
@@ -23,7 +22,7 @@ def load_table_to_landing(
             index=False,
             schema=schema_name,
         )
-        logger.info(f"Table loaded to the {schema_name} schema!!!")
+        logger.info(f"Table {table_name} loaded to the {schema_name} schema!!!")
     except Exception as e:
         logger.error("!!!!!!!!!!!!!!!!!!!!!!")
-        logger.error(f"Enable to load the data to {schema_name} schema : {e}")
+        logger.error(f"Enable to load the table {table_name} to {schema_name} schema : {e}")
